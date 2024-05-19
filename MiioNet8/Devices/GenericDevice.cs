@@ -11,7 +11,7 @@ namespace MiioNet8.Devices
 {
     public class GenericDevice : BaseDevice
     {
-        public GenericDevice(IPAddress iPAddress, int port, Token token) : base(iPAddress, port, token)
+        public GenericDevice(ICommunication communication, IToken token) : base(communication, token)
         {
         }
 

@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 
 namespace MiioNet8.Protocol
 {
-    internal class BasePackage : IPackage
+    public class BasePackage : IPackage
     {
         protected static readonly int headerSize = 32;
         protected static readonly int magicSize = 2;

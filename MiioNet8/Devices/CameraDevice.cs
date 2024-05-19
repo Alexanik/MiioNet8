@@ -1,4 +1,5 @@
-﻿using MiioNet8.Protocol;
+﻿using MiioNet8.Interfaces;
+using MiioNet8.Protocol;
 using System.Net;
 
 namespace MiioNet8.Devices
@@ -7,7 +8,7 @@ namespace MiioNet8.Devices
     {
         public override string Model { get; protected set; } = "isa.camera.hlc7";
 
-        public CameraDevice(IPAddress iPAddress, int port, Token token) : base(iPAddress, port, token)
+        public CameraDevice(ICommunication communication, Token token) : base(communication, token)
         {
         }
 

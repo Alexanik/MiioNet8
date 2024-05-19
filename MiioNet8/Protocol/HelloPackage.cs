@@ -2,7 +2,7 @@
 
 namespace MiioNet8.Protocol
 {
-    internal class HelloPackage : BasePackage
+    public class HelloPackage : BasePackage
     {
         public override byte[] Unknown { get; protected set; } = [0xFF, 0xFF, 0xFF, 0xFF];
 

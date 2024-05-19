@@ -1,4 +1,5 @@
-﻿using MiioNet8.Protocol;
+﻿using MiioNet8.Interfaces;
+using MiioNet8.Protocol;
 using System.Net;
 
 namespace MiioNet8.Devices
@@ -7,7 +8,7 @@ namespace MiioNet8.Devices
     {
         public override string Model { get; protected set; } = "dmaker.fan.p45";
 
-        public FanDevice(IPAddress iPAddress, int port, Token token) : base(iPAddress, port, token)
+        public FanDevice(ICommunication communication, Token token) : base(communication, token)
         {
         }
 
