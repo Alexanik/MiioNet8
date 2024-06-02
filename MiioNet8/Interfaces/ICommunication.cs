@@ -2,7 +2,7 @@
 
 namespace MiioNet8.Interfaces
 {
-    public interface ICommunication
+    internal interface ICommunication
     {
         Task<(CommunicationResult, IPackage?)> SendAndReceiveAsync(IDevice device, IPackage package);
     }

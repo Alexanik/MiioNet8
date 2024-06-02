@@ -19,7 +19,15 @@ namespace MiioNet8.UnitTests
             communication.Setup(c => c.SendAndReceiveAsync(It.IsAny<IDevice>(), It.IsAny<IPackage>()))
                 .ReturnsAsync((Communication.CommunicationResult.Error, null));
             communication.Setup(c => c.SendAndReceiveAsync(It.IsAny<IDevice>(), It.Is<IPackage>(p => p is HelloPackage)))
-                .ReturnsAsync((IDevice device, IPackage package) => {
+                .ReturnsAsync((IDevice device, IPackage package) => 
+                {
+                    var answer = new AnswerPackage(device, [0x21, 0x31, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
+
+                    return (Communication.CommunicationResult.Success, answer);
+                });
+            communication.Setup(c => c.SendAndReceiveAsync(It.IsAny<IDevice>(), It.Is<IPackage>(p => p is CommandPackage)))
+                .ReturnsAsync((IDevice device, IPackage package) =>
+                {
                     return (Communication.CommunicationResult.Success, null);
                 });
 

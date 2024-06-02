@@ -11,6 +11,10 @@ namespace MiioNet8.Devices
 {
     public class BaseDevice : IDevice
     {
+        public IPAddress IPAddress { get; private set; }
+
+        public int Port { get; private set; }
+
         public short Type { get; protected set; }
 
         public short Id { get; protected set; }
@@ -29,11 +33,13 @@ namespace MiioNet8.Devices
 
         protected Spec Spec { get; set; }
 
-        public BaseDevice(ICommunication communication, IToken token)
+        public BaseDevice(IPAddress iPAddress, int port, Token token)
         {
-            Communication = communication;
+            IPAddress = iPAddress;
+            Port = port;
             Token = token;
             State = DeviceState.Created;
+            Communication = new UdpCommunication(IPAddress, Port);
         }
 
         public async Task<CommunicationResult> ConnectAsync()

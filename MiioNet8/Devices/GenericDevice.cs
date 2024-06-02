@@ -11,9 +11,11 @@ namespace MiioNet8.Devices
 {
     public class GenericDevice : BaseDevice
     {
-        public GenericDevice(ICommunication communication, IToken token) : base(communication, token)
+        public GenericDevice(IPAddress iPAddress, int port, Token token) : base(iPAddress, port, token)
         {
         }
+
+        public override string ToString() => $"{Model} {IPAddress}";
 
         protected async Task<(CommunicationResult, List<Property>?)> GetPropertiesAsync(List<ISpecServiceProperty> properties)
         {

@@ -28,5 +28,27 @@ namespace MiioNet8
 
             return await Create<T>(address, tokenValue, port);
         }
+
+        public static async Task<GenericDevice> Create(IPAddress iPAddress, string tokenValue, Type deviceType, int port = 54321)
+        {
+            if (!Token.TryParse(tokenValue, out var token))
+                throw new Exception();
+
+            if (Activator.CreateInstance(deviceType, iPAddress, port, token) is not GenericDevice device)
+                throw new Exception();
+
+            if (await device.ConnectAsync() != Communication.CommunicationResult.Success)
+                throw new Exception();
+
+            return device;
+        }
+
+        public static async Task<GenericDevice> Create(string iPAddress, string tokenValue, Type deviceType, int port = 54321)
+        {
+            if (!IPAddress.TryParse(iPAddress, out var address))
+                throw new Exception();
+
+            return await Create(address, tokenValue, deviceType, port);
+        }
     }
 }

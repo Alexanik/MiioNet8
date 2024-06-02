@@ -5,6 +5,8 @@ namespace MiioNet8.Interfaces
 {
     public interface IDevice
     {
+        IPAddress IPAddress { get; }
+        int Port { get; }
         short Type { get; }
         short Id { get; }
         IToken Token { get; }
