@@ -15,6 +15,8 @@ namespace MiioNet8.Devices
         {
         }
 
+        public override string ToString() => $"{Model} {IPAddress}";
+
         protected async Task<(CommunicationResult, List<Property>?)> GetPropertiesAsync(List<ISpecServiceProperty> properties)
         {
             var (result, response) = await SendCommandAsync<GetPropertiesResponse>(
